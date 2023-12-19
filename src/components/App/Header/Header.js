@@ -11,7 +11,9 @@ const Header = () => {
       </div>
       <div className="header__avatar-logo">
         <div>
-          <button type="text">Add New Clothes</button>
+          <button className="header__button" type="text">
+            Add New Clothes
+          </button>
         </div>
         <div>name</div>
         <div>
