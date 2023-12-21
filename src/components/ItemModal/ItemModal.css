@@ -1,0 +1,38 @@
+.item-modal__content {
+  display: flex;
+  flex-direction: column;
+  background: white;
+  border-radius: 10px;
+  position: fixed;
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 24px;
+  padding-bottom: 10px;
+}
+.item-modal__close-button {
+  background-image: url(../../../public/close.svg);
+  border: none;
+  height: 16px;
+  width: 16px;
+  position: absolute;
+  right: 16px;
+  top: 16px;
+}
+.item-modal__close-button:hover {
+  cursor: pointer;
+  opacity: 0.5;
+}
+
+.item-modal__image {
+  background-size: contain;
+  border-radius: 10px;
+}
+.item-modal__name {
+  margin-left: 30px;
+  margin-bottom: 15px;
+  margin-top: 20px;
+}
+.item-modal__weather {
+  margin-left: 30px;
+  margin-top: 0px;
+}
