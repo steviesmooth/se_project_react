@@ -5,7 +5,8 @@ import Main from "../Main/Main";
 import Footer from "../Footer/Footer";
 import AddItemModal from "../AddItemModal/AddItemModal";
 import ItemModal from "../ItemModal/ItemModal";
-import { useState } from "react";
+import { getWeatherForcast } from "../Utils/WeatherApi";
+import { useEffect, useState } from "react";
 
 function App() {
   const weatherTemp = "75°";
@@ -24,6 +25,13 @@ function App() {
   const handleCloseModal = () => {
     setActiveModal("");
   };
+
+  useEffect(() => {
+    getWeatherForcast().then((data) => {
+      console.log(data);
+    });
+  }, []);
+
   return (
     <div>
       <Header onCreateModal={handleOpenModal} />

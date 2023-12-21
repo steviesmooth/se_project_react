@@ -70,7 +70,9 @@
   margin-left: 8px;
   opacity: 50%;
 }
-
+.form__label_error {
+  color: #ff4d00;
+}
 .form__input {
   font-size: 16px;
   line-height: 20px;
@@ -80,7 +82,12 @@
   border: none;
   border-bottom: #000 solid 1px;
 }
-
+.form__input_error {
+  color: #ff4d00;
+  padding: 5px;
+  border: none;
+  border-bottom: #ff4d00 solid 1px;
+}
 .form__option {
   margin: 8px 0px;
 }
@@ -89,4 +96,9 @@
   accent-color: black;
   opacity: 50%;
   margin: 0;
+}
+.form__input_option:checked,
+.form__input_option:checked + label {
+  accent-color: #000;
+  opacity: 100%;
 }
