@@ -5,38 +5,29 @@ import { useMemo } from "react";
 import "./Main.css";
 
 function Main({ weatherTemp, onSelectCard }) {
-  const getWeatherTemp = () => {
+  const weatherType = useMemo(() => {
     if (weatherTemp >= 86) {
       return "hot";
-    } else if (weatherTemp >= 66 && weatherTemp >= 85) {
+    } else if (weatherTemp >= 66 && weatherTemp <= 85) {
       return "warm";
-    } else if (weatherTemp >= 65) {
+    } else if (weatherTemp <= 65) {
       return "cold";
     }
-  };
+  }, [weatherTemp]);
 
-  // function filteredCards(card) {
-  //   return card.weather === getWeatherTemp();
-  // }
-
-  // const clothingChoices = defaultClothingItems.filter(filteredCards);
-
-  // const filteredCards = defaultClothingItems.filter((item) => {
-  //   return item.weather.toLowerCase() === weatherType;
-  //   console.log(filteredCards);
-  // });
+  const filteredCards = defaultClothingItems.filter((item) => {
+    return item.weather.toLowerCase() === weatherType;
+  });
 
   return (
     <main className="main">
       <WeatherCard day={false} type="rain" weatherTemp={weatherTemp} />
       <section className="main__section" id="main-section">
-        Today is {weatherTemp} F / You may want to wear:
+        Today is {weatherTemp}°F / You may want to wear:
         <ul className="main__items">
-          {defaultClothingItems.map((item) => {
+          {filteredCards.map((item) => {
             return (
               <ItemCard
-                clothingOption={item}
-                onOpen="false"
                 item={item}
                 onSelectCard={onSelectCard}
                 key={item._id}

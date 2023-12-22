@@ -3,11 +3,7 @@
     sans-serif;
   padding-left: 40px;
   padding-right: 40px;
-}
-
-.footer {
+  min-height: 100vh;
   display: flex;
-  justify-content: space-between;
-  margin-top: 20px;
-  padding: 0 20px;
+  flex-direction: column;
 }
