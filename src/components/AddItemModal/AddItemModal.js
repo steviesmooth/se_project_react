@@ -3,26 +3,12 @@ import ModalWithForm from "../ModalWithForm/ModalWithForm";
 import WeatherCard from "../WeatherCard/WeatherCard";
 
 const AddItemModal = ({ onOpen, onClose }) => {
-  const [name, setName] = useState("");
-  const [url, setUrl] = useState("");
-  const [weather, setWeather] = useState("");
-
-  useEffect(() => {
-    setName("");
-    setUrl("");
-    setWeather("");
-  }, [onOpen]);
-
-  const isValid = useMemo(() => {
-    return name.length >= 2 && url.length >= 1;
-  }, [name, url, weather]);
   return (
     <ModalWithForm
       onOpen={onOpen}
       name="create"
       onClose={onClose}
       title="New garment"
-      disabled={!isValid}
     >
       <h4 className="form__name">Name</h4>
       <input
