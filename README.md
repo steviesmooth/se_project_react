@@ -5,4 +5,4 @@ Is an app that determines the weather based of users locations and then returns 
 
 
 #Developer
-[![Steven Narak](https://github.com/steviesmooth)
+[![Steven Narak](https://github.com/steviesmooth)]
