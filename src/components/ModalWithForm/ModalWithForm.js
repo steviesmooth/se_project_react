@@ -5,13 +5,13 @@ const ModalWithForm = ({
   children,
   title,
   onClose,
-  onOpen,
+  isOpen,
   buttonText,
 }) => {
   return (
     <div
       className={
-        onOpen
+        isOpen
           ? `modal modal__type_${name}`
           : `modal_closed modal__type_${name}`
       }

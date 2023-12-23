@@ -2,10 +2,10 @@ import { useEffect, useMemo, useState } from "react";
 import ModalWithForm from "../ModalWithForm/ModalWithForm";
 import WeatherCard from "../WeatherCard/WeatherCard";
 
-const AddItemModal = ({ onOpen, onClose }) => {
+const AddItemModal = ({ isOpen, onClose }) => {
   return (
     <ModalWithForm
-      onOpen={onOpen}
+      isOpen={isOpen}
       name="create"
       onClose={onClose}
       title="New garment"
@@ -13,24 +13,26 @@ const AddItemModal = ({ onOpen, onClose }) => {
     >
       <label>
         <h4 className="form__name">Name</h4>
+        <input
+          className="form__input form__input_type_name"
+          placeholder="Name"
+          type="text"
+          minLength="1"
+          maxLength="40"
+          required
+        ></input>
       </label>
-      <input
-        className="form__input form__input_type_name"
-        placeholder="Name"
-        type="text"
-        minLength="1"
-        maxLength="40"
-        required
-      ></input>
+
       <label>
         <h4 className="form__name">Image</h4>
+        <input
+          className="form__input form__input_type_image"
+          placeholder="Image URL"
+          type="url"
+          required
+        ></input>
       </label>
-      <input
-        className="form__input form__input_type_image"
-        placeholder="Image URL"
-        type="url"
-        required
-      ></input>
+
       <h4 className="form__name">Select the weather type:</h4>
       <div className="form__option-container">
         <div className="form__option">

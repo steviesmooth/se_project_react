@@ -27,12 +27,14 @@ function App() {
   };
 
   useEffect(() => {
-    getWeatherForcast().then((data) => {
-      const tempature = parseWeatherData(data);
-      const location = data.name;
-      setLocation(location);
-      setTemp(tempature);
-    });
+    getWeatherForcast()
+      .then((data) => {
+        const tempature = parseWeatherData(data);
+        const location = data.name;
+        setLocation(location);
+        setTemp(tempature);
+      })
+      .catch((err) => console.error(err));
   }, []);
 
   return (
@@ -41,12 +43,12 @@ function App() {
       <Main weatherTemp={temp} onSelectCard={handleSelectedCard} />
       <Footer />
       <AddItemModal
-        onOpen={activeModal === "create"}
+        isOpen={activeModal === "create"}
         onClose={handleCloseModal}
         name={"create"}
       />
       <ItemModal
-        onOpen={activeModal === "image"}
+        isOpen={activeModal === "image"}
         name={"image"}
         card={selectedCard}
         onClose={handleCloseModal}
