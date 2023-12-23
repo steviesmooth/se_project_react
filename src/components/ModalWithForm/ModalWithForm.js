@@ -1,6 +1,13 @@
 import "./ModalWithForm.css";
 
-const ModalWithForm = ({ name, children, title, onClose, onOpen }) => {
+const ModalWithForm = ({
+  name,
+  children,
+  title,
+  onClose,
+  onOpen,
+  buttonText,
+}) => {
   return (
     <div
       className={
@@ -19,7 +26,7 @@ const ModalWithForm = ({ name, children, title, onClose, onOpen }) => {
         <form className="modal__form">
           {children}
           <button className="modal__form-submit-btn" type="submit">
-            Add garment
+            {buttonText}
           </button>
         </form>
       </div>

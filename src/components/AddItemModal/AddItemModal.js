@@ -9,8 +9,11 @@ const AddItemModal = ({ onOpen, onClose }) => {
       name="create"
       onClose={onClose}
       title="New garment"
+      buttonText={"Add garment"}
     >
-      <h4 className="form__name">Name</h4>
+      <label>
+        <h4 className="form__name">Name</h4>
+      </label>
       <input
         className="form__input form__input_type_name"
         placeholder="Name"
@@ -19,7 +22,9 @@ const AddItemModal = ({ onOpen, onClose }) => {
         maxLength="40"
         required
       ></input>
-      <h4 className="form__name">Image</h4>
+      <label>
+        <h4 className="form__name">Image</h4>
+      </label>
       <input
         className="form__input form__input_type_image"
         placeholder="Image URL"
@@ -34,8 +39,11 @@ const AddItemModal = ({ onOpen, onClose }) => {
             className="form__input_option"
             id="hot"
             value="hot"
+            name="radio"
           />
-          <label className="form__label">Hot</label>
+          <label className="form__label" htmlFor="hot">
+            Hot
+          </label>
         </div>
         <div className="form__option">
           <input
@@ -43,17 +51,23 @@ const AddItemModal = ({ onOpen, onClose }) => {
             id="warm"
             className="form__input_option"
             value="warm"
+            name="radio"
           />
-          <label className="form__label">Warm</label>
+          <label className="form__label" htmlFor="warm">
+            Warm
+          </label>
         </div>
         <div className="form__option">
           <input
             type="radio"
             className="form__input_option"
             id="cold"
+            name="radio"
             value="cold"
           />
-          <label className="form__label">Cold</label>
+          <label className="form__label" htmlFor="cold">
+            Cold
+          </label>
         </div>
       </div>
     </ModalWithForm>
