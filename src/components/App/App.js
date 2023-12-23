@@ -29,16 +29,11 @@ function App() {
   useEffect(() => {
     getWeatherForcast().then((data) => {
       const tempature = parseWeatherData(data);
+      const location = data.name;
+      setLocation(location);
       setTemp(tempature);
     });
   }, []);
-
-  useEffect(() => {
-    getWeatherForcast().then((data) => {
-      const location = data.name;
-      setLocation(location);
-    });
-  });
 
   return (
     <div className="app">
