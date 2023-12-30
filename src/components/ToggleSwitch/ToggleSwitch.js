@@ -7,22 +7,45 @@ const ToggleSwitch = () => {
     CurrentTemperatureUnitContext
   );
 
-  const [isChecked, setIsChecked] = useState(currentTemperatureUnit === "F");
+  const [isChecked, setIsChecked] = useState(currentTemperatureUnit === "C");
+  const [fahrenheitActive, setFahrenheitActive] = useState("");
+  const [celciusActive, setCelciusActive] = useState("");
+
+  useEffect(() => {
+    if (currentTemperatureUnit === "F") {
+      setFahrenheitActive("white");
+    } else {
+      setFahrenheitActive("gray");
+    }
+  }, [currentTemperatureUnit]);
+
+  useEffect(() => {
+    if (currentTemperatureUnit === "C") {
+      setCelciusActive("white");
+    } else {
+      setCelciusActive("gray");
+    }
+  }, [currentTemperatureUnit]);
 
   useEffect(
-    () => setIsChecked(currentTemperatureUnit === "F"),
+    () => setIsChecked(currentTemperatureUnit === "C"),
     [currentTemperatureUnit]
   );
 
   return (
     <div className="switch">
-      <label className="switch__label">
-        <p className="switch__label_F">F</p>
-        <p className="switch__label_C">C</p>
+      <label className="switch__label" htmlFor="switch">
+        <p className="switch__label_F" style={{ color: fahrenheitActive }}>
+          F
+        </p>
+        <p className="switch__label_C" style={{ color: celciusActive }}>
+          C
+        </p>
         <input
           className="switch__checkbox"
           type="checkbox"
           id="switch"
+          value={currentTemperatureUnit}
           checked={isChecked}
           onChange={handleToggleSwitch}
         />

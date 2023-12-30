@@ -10,7 +10,7 @@
   justify-content: space-between;
   cursor: pointer;
   width: 50px;
-  height: 26px;
+  height: 27px;
   background-color: #fff;
   border-radius: 25px;
   position: relative;
@@ -59,7 +59,10 @@
   box-shadow: 0 0 2px 0 rgba(10, 10, 10, 0.29);
 }
 
-.switch__checkbox:checked + .switch__label .switch__button {
+.switch__checkbox:checked + .switch__button {
   left: calc(100% + 2px);
   transform: translateX(-100%);
+}
+.switch__label:hover .switch__button {
+  width: 30px;
 }

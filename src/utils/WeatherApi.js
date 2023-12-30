@@ -19,5 +19,8 @@ export const getWeatherForcast = () => {
 export const parseWeatherData = (data) => {
   const main = data.main;
   const temp = main && main.temp;
-  return Math.ceil(temp);
+  const weather = {
+    temp: { F: Math.round(temp), C: Math.round(((temp - 32) * 5) / 9) },
+  };
+  return weather;
 };
