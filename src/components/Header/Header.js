@@ -1,3 +1,4 @@
+import ToggleSwitch from "../ToggleSwitch/ToggleSwitch";
 import "./Header.css";
 
 const Header = ({ onCreateModal, location }) => {
@@ -17,6 +18,7 @@ const Header = ({ onCreateModal, location }) => {
         </div>
       </div>
       <div className="header__avatar-logo">
+        <ToggleSwitch />
         <div>
           <button
             className="header__button"

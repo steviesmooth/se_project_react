@@ -6,12 +6,14 @@ import AddItemModal from "../AddItemModal/AddItemModal";
 import ItemModal from "../ItemModal/ItemModal";
 import { getWeatherForcast, parseWeatherData } from "../../utils/WeatherApi";
 import { useEffect, useState } from "react";
+import CurrentTemperatureUnitContext from "../../contexts/CurrentTemperatureUnitContext";
 
 function App() {
   const [activeModal, setActiveModal] = useState("");
   const [selectedCard, setSelectedCard] = useState({});
   const [temp, setTemp] = useState(0);
   const [location, setLocation] = useState("");
+  const [currentTemperatureUnit, setCurrentTemperatureUnit] = useState("F");
 
   const handleSelectedCard = (card) => {
     setSelectedCard(card);
@@ -39,20 +41,24 @@ function App() {
 
   return (
     <div className="app">
-      <Header onCreateModal={handleOpenModal} location={location} />
-      <Main weatherTemp={temp} onSelectCard={handleSelectedCard} />
-      <Footer />
-      <AddItemModal
-        isOpen={activeModal === "create"}
-        onClose={handleCloseModal}
-        name={"create"}
-      />
-      <ItemModal
-        isOpen={activeModal === "image"}
-        name={"image"}
-        card={selectedCard}
-        onClose={handleCloseModal}
-      />
+      <CurrentTemperatureUnitContext.Provider
+        value={{ currentTemperatureUnit }}
+      >
+        <Header onCreateModal={handleOpenModal} location={location} />
+        <Main weatherTemp={temp} onSelectCard={handleSelectedCard} />
+        <Footer />
+        <AddItemModal
+          isOpen={activeModal === "create"}
+          onClose={handleCloseModal}
+          name={"create"}
+        />
+        <ItemModal
+          isOpen={activeModal === "image"}
+          name={"image"}
+          card={selectedCard}
+          onClose={handleCloseModal}
+        />
+      </CurrentTemperatureUnitContext.Provider>
     </div>
   );
 }
