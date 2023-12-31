@@ -7,6 +7,8 @@ import ItemModal from "../ItemModal/ItemModal";
 import { getWeatherForcast, parseWeatherData } from "../../utils/WeatherApi";
 import { useEffect, useState } from "react";
 import CurrentTemperatureUnitContext from "../../contexts/CurrentTemperatureUnitContext";
+import { Route, Switch } from "react-router-dom/cjs/react-router-dom.min";
+import * as api from "../../utils/api";
 
 function App() {
   const [activeModal, setActiveModal] = useState("");
@@ -14,6 +16,7 @@ function App() {
   const [temp, setTemp] = useState(0);
   const [location, setLocation] = useState("");
   const [currentTemperatureUnit, setCurrentTemperatureUnit] = useState("F");
+  const [clothingItems, setClothingItems] = useState([]);
 
   const handleSelectedCard = (card) => {
     setSelectedCard(card);
@@ -34,6 +37,25 @@ function App() {
       : setCurrentTemperatureUnit("F");
   };
 
+  const handleAddItemSubmit = (item) => {
+    setClothingItems([item, ...clothingItems]);
+    handleCloseModal();
+  };
+
+  const getClothingItems = () => {
+    api
+      .getItems()
+      .then((data) => {
+        setClothingItems(data);
+      })
+      .catch((err) => {
+        console.error(err);
+      });
+  };
+  useEffect(() => {
+    getClothingItems();
+  }, []);
+
   useEffect(() => {
     getWeatherForcast()
       .then((data) => {
@@ -51,12 +73,22 @@ function App() {
         value={{ currentTemperatureUnit, handleToggleSwitch }}
       >
         <Header onCreateModal={handleOpenModal} location={location} />
-        <Main weatherTemp={temp} onSelectCard={handleSelectedCard} />
+        <Switch>
+          <Route exact path="/">
+            <Main
+              weatherTemp={temp}
+              onSelectCard={handleSelectedCard}
+              clothingItems={clothingItems}
+            />
+          </Route>
+          <Route path="/profile">Profile</Route>
+        </Switch>
         <Footer />
         <AddItemModal
           isOpen={activeModal === "create"}
           onClose={handleCloseModal}
           name={"create"}
+          onAddItem={handleAddItemSubmit}
         />
         <ItemModal
           isOpen={activeModal === "image"}

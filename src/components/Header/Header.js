@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom/cjs/react-router-dom.min";
 import ToggleSwitch from "../ToggleSwitch/ToggleSwitch";
 import "./Header.css";
 
@@ -11,7 +12,9 @@ const Header = ({ onCreateModal, location }) => {
     <header className="header">
       <div className="header__logo">
         <div>
-          <img src="../Logo.svg" alt="logo" />
+          <Link to="/">
+            <img src="../Logo.svg" alt="logo" />
+          </Link>
         </div>
         <div>
           {currentDate}, {location}
@@ -28,7 +31,7 @@ const Header = ({ onCreateModal, location }) => {
             + Add New Clothes
           </button>
         </div>
-        <div>Steven Narak</div>
+        <Link to="/profile">Steven Narak</Link>
         <div>
           <img src="../Ellipse 18.svg" alt="avatar-logo" />
         </div>
