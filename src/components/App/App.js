@@ -37,9 +37,16 @@ function App() {
       : setCurrentTemperatureUnit("F");
   };
 
-  const handleAddItemSubmit = (item) => {
-    setClothingItems([item, ...clothingItems]);
-    handleCloseModal();
+  const handleAddItemSubmit = (name, imageUrl, weather) => {
+    api
+      .addItems(name, imageUrl, weather)
+      .then((item) => {
+        setClothingItems([item, ...clothingItems]);
+        handleCloseModal();
+      })
+      .catch((err) => {
+        console.error(err);
+      });
   };
 
   const getClothingItems = () => {
