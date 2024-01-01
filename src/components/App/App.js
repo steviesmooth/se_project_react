@@ -9,6 +9,7 @@ import { useEffect, useState } from "react";
 import CurrentTemperatureUnitContext from "../../contexts/CurrentTemperatureUnitContext";
 import { Route, Switch } from "react-router-dom/cjs/react-router-dom.min";
 import * as api from "../../utils/api";
+import Profile from "../Profile/Profile";
 
 function App() {
   const [activeModal, setActiveModal] = useState("");
@@ -89,7 +90,13 @@ function App() {
               clothingItems={clothingItems}
             />
           </Route>
-          <Route path="/profile">Profile</Route>
+          <Route path="/profile">
+            <Profile
+              clothingItems={clothingItems}
+              onSelectCard={handleSelectedCard}
+              onCreateModal={handleOpenModal}
+            />
+          </Route>
         </Switch>
         <Footer />
         <AddItemModal
