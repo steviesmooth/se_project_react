@@ -8,9 +8,11 @@ const AddItemModal = ({ isOpen, onClose, onAddItem }) => {
   const [weather, setWeather] = useState("");
 
   useEffect(() => {
-    setName("");
-    setImageUrl("");
-    setWeather("");
+    if (isOpen) {
+      setName("");
+      setImageUrl("");
+      setWeather("");
+    }
   }, [isOpen]);
 
   const handleNameChange = (e) => {

@@ -1,15 +1,14 @@
 const baseUrl = "http://localhost:3001";
 
+export const processServerResponse = (res) => {
+  if (res.ok) {
+    return res.json();
+  }
+  return Promise.reject(`Error: ${res.status}`);
+};
+
 export const getItems = () => {
-  return fetch(`${baseUrl}/items`)
-    .then((res) => res.json())
-    .then((data) => {
-      return data;
-    })
-    .catch((err) => {
-      console.error(err);
-      throw err;
-    });
+  return fetch(`${baseUrl}/items`).then(processServerResponse);
 };
 
 export const addItems = ({ name, imageUrl, weather }) => {
@@ -23,17 +22,7 @@ export const addItems = ({ name, imageUrl, weather }) => {
       imageUrl,
       weather,
     }),
-  })
-    .then((res) => {
-      if (res.ok) {
-        return res.json();
-      }
-    })
-
-    .catch((err) => {
-      console.error(err);
-      throw err;
-    });
+  }).then(processServerResponse);
 };
 
 export const deleteItems = (_id) => {
@@ -42,15 +31,5 @@ export const deleteItems = (_id) => {
     headers: {
       "Content-Type": "application/json",
     },
-  })
-    .then((res) => {
-      if (res.ok) {
-        return res.json();
-      }
-    })
-
-    .catch((err) => {
-      console.error(err);
-      throw err;
-    });
+  }).then(processServerResponse);
 };

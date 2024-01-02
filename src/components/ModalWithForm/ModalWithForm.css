@@ -59,9 +59,14 @@
   border-radius: 4px;
   margin-top: 32px;
   margin-bottom: 36px;
-  background-color: #0000004d;
+  background-color: rgba(0, 0, 0, 1);
   color: #fff;
   border: none;
+}
+
+.modal__form-submit-btn:hover {
+  cursor: pointer;
+  background-color: rgba(0, 0, 0, 0.6);
 }
 .form__name {
   margin-top: 24px;
@@ -82,6 +87,7 @@
   padding-bottom: 4px;
   border: none;
   border-bottom: #000 solid 1px;
+  width: 100%;
 }
 .form__input_error {
   color: #ff4d00;

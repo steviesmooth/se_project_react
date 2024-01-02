@@ -17,3 +17,18 @@
   gap: 20px;
   align-items: center;
 }
+
+.header__button {
+  border: none;
+  background-color: transparent;
+  color: rgba(0, 0, 0, 1);
+  font-family: Cabinet Grotesk, Arial, Helvetica, sans-serif;
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 24px;
+}
+
+.header__button:hover {
+  cursor: pointer;
+  opacity: 0.5;
+}

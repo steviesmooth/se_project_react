@@ -31,3 +31,7 @@
   height: 326px;
   object-fit: cover;
 }
+
+.card__image:hover {
+  cursor: pointer;
+}

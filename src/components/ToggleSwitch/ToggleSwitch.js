@@ -7,30 +7,9 @@ const ToggleSwitch = () => {
     CurrentTemperatureUnitContext
   );
 
-  const [isChecked, setIsChecked] = useState(currentTemperatureUnit === "C");
-  const [fahrenheitActive, setFahrenheitActive] = useState("");
-  const [celciusActive, setCelciusActive] = useState("");
-
-  useEffect(() => {
-    if (currentTemperatureUnit === "F") {
-      setFahrenheitActive("white");
-    } else {
-      setFahrenheitActive("gray");
-    }
-  }, [currentTemperatureUnit]);
-
-  useEffect(() => {
-    if (currentTemperatureUnit === "C") {
-      setCelciusActive("white");
-    } else {
-      setCelciusActive("gray");
-    }
-  }, [currentTemperatureUnit]);
-
-  useEffect(
-    () => setIsChecked(currentTemperatureUnit === "C"),
-    [currentTemperatureUnit]
-  );
+  const isChecked = currentTemperatureUnit === "C";
+  const fahrenheitActive = currentTemperatureUnit === "F" ? "white" : "gray";
+  const celciusActive = currentTemperatureUnit === "C" ? "white" : "gray";
 
   return (
     <div className="switch">

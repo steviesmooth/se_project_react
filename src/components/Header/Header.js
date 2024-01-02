@@ -28,7 +28,7 @@ const Header = ({ onCreateModal, location }) => {
             type="text"
             onClick={onCreateModal}
           >
-            + Add New Clothes
+            + Add clothes
           </button>
         </div>
         <Link to="/profile">Steven Narak</Link>
