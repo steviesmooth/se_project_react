@@ -38,6 +38,19 @@ function App() {
       : setCurrentTemperatureUnit("F");
   };
 
+  const handleDeleteItem = () => {
+    api
+      .deleteItems(selectedCard._id)
+      .then(() => {
+        setClothingItems(
+          clothingItems.filter((item) => item._id !== selectedCard._id)
+        );
+        setSelectedCard({});
+        handleCloseModal();
+      })
+      .catch((err) => console.error(err));
+  };
+
   const handleAddItemSubmit = ({ name, imageUrl, weather }) => {
     api
       .addItems({ name, imageUrl, weather })
@@ -109,6 +122,7 @@ function App() {
           name={"image"}
           card={selectedCard}
           onClose={handleCloseModal}
+          onDelete={handleDeleteItem}
         />
       </CurrentTemperatureUnitContext.Provider>
     </div>

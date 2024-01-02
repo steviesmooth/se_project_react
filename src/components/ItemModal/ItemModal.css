@@ -26,6 +26,8 @@
 .item-modal__image {
   background-size: contain;
   border-radius: 10px;
+  max-height: 610px;
+  max-width: 498px;
 }
 .item-modal__name {
   margin-left: 30px;
@@ -35,4 +37,19 @@
 .item-modal__weather {
   margin-left: 30px;
   margin-top: 0px;
+}
+.item-modal__delete-btn {
+  font-family: Cabinet Grotesk, Arial, Helvetica, sans-serif;
+  font-weight: 700;
+  position: absolute;
+  bottom: 74px;
+  right: 20px;
+  border: none;
+  background: transparent;
+  color: rgba(255, 77, 0, 1);
+  line-height: 24px;
+  font-size: 20px;
+}
+.item-modal__delete-btn:hover {
+  cursor: pointer;
 }

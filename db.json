@@ -101,6 +101,12 @@
       "name": "T-Shirt",
       "weather": "hot",
       "imageUrl": "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/wtwr-project/T-Shirt.png?etag=44ed1963c44ab19cd2f5011522c5fc09"
+    },
+    {
+      "name": "haevy",
+      "imageUrl": "https://cdni.llbean.net/is/image/wim/260347_2772_41?hei=1095&wid=950&resMode=sharp2&defaultImage=llbprod/260347_2772_41",
+      "weather": "cold",
+      "_id": 17
     }
   ]
 }

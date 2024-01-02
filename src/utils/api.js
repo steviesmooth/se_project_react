@@ -35,3 +35,22 @@ export const addItems = ({ name, imageUrl, weather }) => {
       throw err;
     });
 };
+
+export const deleteItems = (_id) => {
+  return fetch(`${baseUrl}/items${_id}`, {
+    method: "DELETE",
+    headers: {
+      "Content-Type": "application/json",
+    },
+  })
+    .then((res) => {
+      if (res.ok) {
+        return res.json();
+      }
+    })
+
+    .catch((err) => {
+      console.error(err);
+      throw err;
+    });
+};
