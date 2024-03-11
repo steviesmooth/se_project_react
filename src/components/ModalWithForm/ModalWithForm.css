@@ -63,6 +63,23 @@
   color: #fff;
   border: none;
 }
+.modal__form-btn_text {
+  color: rgba(0, 0, 0, 0.5);
+  font-size: 16px;
+  transition: 0.2s;
+  position: relative;
+  top: 15px;
+  left: 140px;
+  margin-bottom: -44px;
+  width: fit-content;
+}
+.modal__form-btn_text:hover {
+  cursor: pointer;
+  color: rgba(0, 0, 0, 0.6);
+}
+.modal__form-submit-btn:disabled {
+  background: #0000004d;
+}
 
 .modal__form-submit-btn:hover {
   cursor: pointer;
@@ -71,6 +88,10 @@
 .form__name {
   margin-top: 24px;
   margin-bottom: 14px;
+}
+
+.form__name_error {
+  color: #ff4d00;
 }
 .form__label {
   margin-left: 8px;

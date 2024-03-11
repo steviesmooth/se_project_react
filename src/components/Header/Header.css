@@ -6,7 +6,15 @@
   padding-top: 40px;
   margin-bottom: 20px;
 }
-
+.header__user-img {
+  height: 40px;
+  width: 40px;
+  border-radius: 50%;
+  object-fit: cover;
+  display: flex;
+  gap: 20px;
+  align-items: center;
+}
 .header__logo {
   display: flex;
   gap: 20px;

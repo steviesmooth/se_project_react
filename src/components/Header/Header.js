@@ -1,8 +1,17 @@
 import { Link } from "react-router-dom/cjs/react-router-dom.min";
 import ToggleSwitch from "../ToggleSwitch/ToggleSwitch";
 import "./Header.css";
+import CurrentUserContext from "../../contexts/CurrentUserContext";
+import { useContext } from "react";
 
-const Header = ({ onCreateModal, location }) => {
+const Header = ({
+  onCreateModal,
+  location,
+  isLoggedIn,
+  onLoginModal,
+  onRegisterModal,
+}) => {
+  const currentUser = useContext(CurrentUserContext);
   const currentDate = new Date().toLocaleString("default", {
     month: "long",
     day: "numeric",
@@ -22,19 +31,45 @@ const Header = ({ onCreateModal, location }) => {
       </div>
       <div className="header__avatar-logo">
         <ToggleSwitch />
-        <div>
+        {isLoggedIn ? (
+          <div>
+            <button
+              className="header__button"
+              type="text"
+              onClick={onCreateModal}
+            >
+              + Add clothes
+            </button>
+          </div>
+        ) : (
           <button
             className="header__button"
             type="text"
-            onClick={onCreateModal}
+            onClick={onRegisterModal}
           >
-            + Add clothes
+            Sign up
           </button>
-        </div>
-        <Link to="/profile">Steven Narak</Link>
-        <div>
-          <img src="../Ellipse 18.svg" alt="avatar-logo" />
-        </div>
+        )}
+        {isLoggedIn ? (
+          <Link to="/profile">
+            <h2 className="header__user-name">{currentUser.name}</h2>
+            {currentUser.avatar === "" ? (
+              <div className="header__avatar-logo">{currentUser.name[0]}</div>
+            ) : (
+              <div>
+                <img
+                  src={currentUser.avatar}
+                  alt="avatar-logo"
+                  className="header__user-img"
+                />
+              </div>
+            )}
+          </Link>
+        ) : (
+          <button className="header__button" type="text" onClick={onLoginModal}>
+            Log in
+          </button>
+        )}
       </div>
     </header>
   );
