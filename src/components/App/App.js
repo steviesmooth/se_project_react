@@ -15,6 +15,7 @@ import RegisterModal from "../RegisterModal/RegisterModal";
 import { authorize, getUser, register } from "../../utils/auth";
 import LoginModal from "../LoginModal/LoginModal";
 import ProtectedRoute from "../ProtectedRoute/ProtectedRoute";
+import { useHistory } from "react-router-dom/cjs/react-router-dom";
 
 function App() {
   const [activeModal, setActiveModal] = useState("");
@@ -30,6 +31,7 @@ function App() {
     avatar: "",
     _id: "",
   });
+  const history = useHistory();
 
   const handleSelectedCard = (card) => {
     setSelectedCard(card);
@@ -165,16 +167,19 @@ function App() {
           <Switch>
             <ProtectedRoute isLoggedIn={isLoggedIn} path="/profile">
               <Profile
+                currentUser={currentUser}
                 clothingItems={clothingItems}
                 onSelectCard={handleSelectedCard}
                 onCreateModal={handleOpenModal}
+                isLoggedIn={isLoggedIn}
               />
             </ProtectedRoute>
-            <Route exact path="/">
+            <Route path={"/"}>
               <Main
                 weatherTemp={temp}
                 onSelectCard={handleSelectedCard}
                 clothingItems={clothingItems}
+                isLoggedIn={isLoggedIn}
               />
             </Route>
           </Switch>

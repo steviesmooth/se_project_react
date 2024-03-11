@@ -8,7 +8,13 @@ export const processServerResponse = (res) => {
 };
 
 export const getItems = () => {
-  return fetch(`${baseUrl}/items`).then(processServerResponse);
+  return fetch(`${baseUrl}/items`, {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+      authorization: `Bearer ${localStorage.getItem("token")}`,
+    },
+  }).then(processServerResponse);
 };
 
 export const addItems = ({ name, imageUrl, weather }) => {
@@ -16,6 +22,7 @@ export const addItems = ({ name, imageUrl, weather }) => {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
+      authorization: `Bearer ${localStorage.getItem("token")}`,
     },
     body: JSON.stringify({
       name,

@@ -1,6 +1,6 @@
 import "./SideBar.css";
 
-const SideBar = () => {
+const SideBar = ({ currentUser, onEditModal, handleLogout }) => {
   return (
     <div className="sidebar">
       <img
