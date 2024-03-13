@@ -8,7 +8,6 @@ const ClothesSection = ({
   onSelectCard,
   onCreateModal,
   isLoggedIn,
-  handleLike,
 }) => {
   const currentUser = useContext(CurrentUserContext);
   return (

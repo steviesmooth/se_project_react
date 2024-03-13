@@ -8,10 +8,12 @@ const Profile = ({
   onSelectCard,
   currentUser,
   onEditModal,
-  handleLike,
   isLoggedIn,
   handleLogout,
 }) => {
+  const userClothes = clothingItems.filter(
+    (item) => item.owner === currentUser._id
+  );
   return (
     <div className="profile">
       <SideBar
@@ -22,9 +24,8 @@ const Profile = ({
       <ClothesSection
         onCreateModal={onCreateModal}
         onSelectCard={onSelectCard}
-        clothingItems={clothingItems}
+        clothingItems={userClothes}
         isLoggedIn={isLoggedIn}
-        handleLike={handleLike}
       />
     </div>
   );

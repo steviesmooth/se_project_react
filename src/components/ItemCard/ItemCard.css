@@ -35,3 +35,33 @@
 .card__image:hover {
   cursor: pointer;
 }
+.card__like-btn {
+  background-image: url(../../Like\ button.svg);
+  background-color: transparent;
+  background-repeat: no-repeat;
+  border: none;
+  width: 18px;
+  height: 15px;
+  margin-left: 10px;
+  z-index: 2;
+}
+
+.card__like-btn_liked {
+  background-image: url(../../isLiked.svg);
+  background-color: transparent;
+  background-repeat: no-repeat;
+  border: none;
+  width: 18px;
+  height: 15px;
+  margin-left: 10px;
+  z-index: 2;
+}
+.card__like-btn_hidden {
+  display: none;
+}
+
+.card__like-btn:hover,
+.card__like-btn_liked:hover {
+  cursor: pointer;
+  opacity: 0.5;
+}

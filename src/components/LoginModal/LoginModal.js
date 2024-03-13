@@ -1,6 +1,6 @@
 import React, { useEffect, useMemo, useState } from "react";
 import ModalWithForm from "../ModalWithForm/ModalWithForm";
-import { useHistory } from "react-router-dom/cjs/react-router-dom";
+import { useHistory, withRouter } from "react-router-dom/cjs/react-router-dom";
 import { regex } from "../../utils/constants";
 
 const LoginModal = ({
@@ -89,4 +89,4 @@ const LoginModal = ({
   );
 };
 
-export default LoginModal;
+export default withRouter(LoginModal);

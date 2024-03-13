@@ -16,6 +16,7 @@ import { authorize, getUser, register } from "../../utils/auth";
 import LoginModal from "../LoginModal/LoginModal";
 import ProtectedRoute from "../ProtectedRoute/ProtectedRoute";
 import { useHistory } from "react-router-dom/cjs/react-router-dom";
+import EditProfileModal from "../EditProfileModal/EditProfileModal";
 
 function App() {
   const [activeModal, setActiveModal] = useState("");
@@ -85,6 +86,32 @@ function App() {
       });
   };
 
+  const handleCardLike = ({ id, isLiked }) => {
+    const token = localStorage.getItem("jwt");
+    // Check if this card is now liked
+    isLiked
+      ? // if so, send a request to add the user's id to the card's likes array
+        api
+          // the first argument is the card's id
+          .addCardLike(id, token)
+          .then((updatedCard) => {
+            setClothingItems((cards) =>
+              cards.map((c) => (c._id === id ? updatedCard : c))
+            );
+          })
+          .catch((err) => console.log(err))
+      : // if not, send a request to remove the user's id from the card's likes array
+        api
+          // the first argument is the card's id
+          .removeCardLike(id, token)
+          .then((updatedCard) => {
+            setClothingItems((cards) =>
+              cards.map((c) => (c._id === id ? updatedCard : c))
+            );
+          })
+          .catch((err) => console.log(err));
+  };
+
   const getClothingItems = () => {
     api
       .getItems()
@@ -111,10 +138,10 @@ function App() {
   }, []);
 
   useEffect(() => {
-    const jwt = localStorage.getItem("jwt");
-    if (jwt) {
+    if (localStorage.getItem("token")) {
+      const token = localStorage.getItem("token");
       setIsLoggedIn(true);
-      getUser(jwt)
+      getUser(token)
         .then((res) => {
           setCurrentUser(res.data);
         })
@@ -124,7 +151,7 @@ function App() {
     }
   }, [isLoggedIn]);
 
-  const handleAuthorization = (email, password) => {
+  const handleLogin = (email, password) => {
     setError(false);
     authorize(email, password)
       .then(() => {
@@ -137,6 +164,11 @@ function App() {
       });
   };
 
+  const handleLogout = (e) => {
+    e.preventDefault();
+    localStorage.removeItem("token");
+    setIsLoggedIn(false);
+  };
   const handleRegister = ({ name, email, avatar, password }) => {
     return register({ name, email, avatar, password })
       .then((res) => {
@@ -145,6 +177,18 @@ function App() {
         handleCloseModal();
       })
       .catch((err) => console.error(err));
+  };
+
+  const handleUserUpdate = ({ name, avatar, token }) => {
+    api
+      .updateUser(name, avatar, token)
+      .then((res) => {
+        setCurrentUser(res);
+        handleCloseModal();
+      })
+      .catch((err) => {
+        console.error(err);
+      });
   };
 
   return (
@@ -171,7 +215,11 @@ function App() {
                 clothingItems={clothingItems}
                 onSelectCard={handleSelectedCard}
                 onCreateModal={handleOpenModal}
+                onEditModal={() => {
+                  setActiveModal("update");
+                }}
                 isLoggedIn={isLoggedIn}
+                handleLogout={handleLogout}
               />
             </ProtectedRoute>
             <Route path={"/"}>
@@ -180,6 +228,7 @@ function App() {
                 onSelectCard={handleSelectedCard}
                 clothingItems={clothingItems}
                 isLoggedIn={isLoggedIn}
+                onCardLike={handleCardLike}
               />
             </Route>
           </Switch>
@@ -209,9 +258,16 @@ function App() {
             name={"login"}
             onClose={handleCloseModal}
             handleUserModal={handleUserModal}
-            handleLogin={handleAuthorization}
+            handleLogin={handleLogin}
             error={error}
             setError={handleSetError}
+          />
+          <EditProfileModal
+            isOpen={activeModal === "update"}
+            name={"update"}
+            onClose={handleCloseModal}
+            handleUserUpdate={handleUserUpdate}
+            currentUser={currentUser}
           />
         </CurrentTemperatureUnitContext.Provider>
       </div>

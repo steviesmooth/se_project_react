@@ -62,7 +62,7 @@ const RegisterModal = ({
       disabled={!isValid}
     >
       <label>
-        <h4 className="form__name">Email</h4>
+        <h4 className="form__name">Email*</h4>
         <input
           className="form__input form__input_type_name"
           placeholder="Email"
@@ -74,7 +74,7 @@ const RegisterModal = ({
         ></input>
       </label>
       <label>
-        <h4 className="form__name">Password</h4>
+        <h4 className="form__name">Password*</h4>
         <input
           className="form__input form__input_type_name"
           placeholder="Password"

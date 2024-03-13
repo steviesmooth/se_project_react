@@ -53,3 +53,9 @@
 .item-modal__delete-btn:hover {
   cursor: pointer;
 }
+.item-modal__delete-btn_visible {
+  visibility: visible;
+}
+.item-modal__delete-btn_hidden {
+  visibility: hidden;
+}

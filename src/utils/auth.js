@@ -28,10 +28,11 @@ export const authorize = (email, password) => {
   })
     .then(processServerResponse)
     .then((data) => {
-      if (data.jwt) {
+      if (data.user) {
         localStorage.setItem("jwt", data.jwt);
         return data;
       }
+      return;
     })
     .catch((err) => console.error(err));
 };

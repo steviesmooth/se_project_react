@@ -37,6 +37,38 @@ export const deleteItems = (_id) => {
     method: "DELETE",
     headers: {
       "Content-Type": "application/json",
+      authorization: `Bearer ${localStorage.getItem("token")}`,
+    },
+  }).then(processServerResponse);
+};
+
+export const updateUser = (name, avatar, token) => {
+  return fetch(`${baseUrl}/users/me`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      authorization: `Bearer ${token}`,
+    },
+    body: JSON.stringify({ name, avatar }),
+  }).then(processServerResponse);
+};
+
+export const addCardLike = (_id, token) => {
+  return fetch(`${baseUrl}/items/${_id}/likes`, {
+    method: "PUT",
+    headers: {
+      "Content-Type": "application/json",
+      authorization: `Bearer ${token}`,
+    },
+  }).then(processServerResponse);
+};
+
+export const removeCardLike = (_id, token) => {
+  return fetch(`${baseUrl}/items/${_id}/likes`, {
+    method: "DELETE",
+    headers: {
+      "Content-Type": "application/json",
+      authorization: `Bearer ${token}`,
     },
   }).then(processServerResponse);
 };
