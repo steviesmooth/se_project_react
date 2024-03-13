@@ -15,7 +15,7 @@ import RegisterModal from "../RegisterModal/RegisterModal";
 import { authorize, getUser, register } from "../../utils/auth";
 import LoginModal from "../LoginModal/LoginModal";
 import ProtectedRoute from "../ProtectedRoute/ProtectedRoute";
-import { useHistory } from "react-router-dom/cjs/react-router-dom";
+
 import EditProfileModal from "../EditProfileModal/EditProfileModal";
 
 function App() {
@@ -32,7 +32,6 @@ function App() {
     avatar: "",
     _id: "",
   });
-  const history = useHistory();
 
   const handleSelectedCard = (card) => {
     setSelectedCard(card);
