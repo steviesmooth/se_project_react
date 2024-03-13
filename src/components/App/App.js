@@ -143,7 +143,7 @@ function App() {
       setIsLoggedIn(true);
       getUser(token)
         .then((res) => {
-          setCurrentUser(res.data);
+          setCurrentUser(res.user);
         })
         .catch((err) => {
           console.error(err);
@@ -173,7 +173,7 @@ function App() {
     return register({ name, email, avatar, password })
       .then((res) => {
         setIsLoggedIn(true);
-        setCurrentUser(res);
+        setCurrentUser(res.user);
         handleCloseModal();
       })
       .catch((err) => console.error(err));
@@ -183,7 +183,7 @@ function App() {
     api
       .updateUser(name, avatar, token)
       .then((res) => {
-        setCurrentUser(res);
+        setCurrentUser(res.user);
         handleCloseModal();
       })
       .catch((err) => {
