@@ -12,7 +12,6 @@ export const getItems = () => {
     method: "GET",
     headers: {
       "Content-Type": "application/json",
-      authorization: `Bearer ${localStorage.getItem("token")}`,
     },
   }).then(processServerResponse);
 };
