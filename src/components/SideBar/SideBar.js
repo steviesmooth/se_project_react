@@ -4,19 +4,19 @@ const SideBar = ({ currentUser, onEditModal, handleLogout }) => {
   return (
     <div className="sidebar">
       <div className="sidebar__user">
-        {currentUser.avatar === "" ? (
+        {currentUser?.avatar === "" ? (
           <div className="sidebar__user-image_holder">
-            {currentUser.name[0]}
+            {currentUser?.name[0]}
           </div>
         ) : (
           <img
             className="sidebar__user-image"
             alt="user-logo"
-            src={currentUser.avatar}
+            src={currentUser?.avatar}
           />
         )}
         <h2 className="siderbar__user-name" alt="user-name">
-          {currentUser.name}
+          {currentUser?.name}
         </h2>
       </div>
       <button className="sidebar__button" onClick={onEditModal}>

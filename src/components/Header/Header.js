@@ -52,13 +52,15 @@ const Header = ({
         )}
         {isLoggedIn ? (
           <Link to={"/profile"}>
-            <h2 className="header__user-name">{currentUser.name}</h2>
-            {currentUser.avatar === "" ? (
-              <div className="header__user-img-text">{currentUser.name[0]}</div>
+            <h2 className="header__user-name">{currentUser?.name}</h2>
+            {currentUser?.avatar === "" ? (
+              <div className="header__user-img-text">
+                {currentUser?.name[0]}
+              </div>
             ) : (
               <div className="header__user-img">
                 <img
-                  src={currentUser.avatar}
+                  src={currentUser?.avatar}
                   alt="avatar-logo"
                   className="header__user-img"
                 />
