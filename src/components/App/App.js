@@ -128,6 +128,16 @@ function App() {
   }, []);
 
   useEffect(() => {
+    api
+      .getItems()
+      .then((items) => {
+        setClothingItems(items);
+        handleCloseModal();
+      })
+      .catch(console.error());
+  }, [isLoggedIn]);
+
+  useEffect(() => {
     getWeatherForcast()
       .then((data) => {
         const tempature = parseWeatherData(data);
