@@ -11,7 +11,7 @@ const SideBar = ({ currentUser, onEditModal, handleLogout }) => {
         ) : (
           <img
             className="sidebar__user-image"
-            alt="user-image"
+            alt="user-logo"
             src={currentUser.avatar}
           />
         )}

@@ -7,15 +7,13 @@ const EditProfileModal = ({
   currentUser,
   handleUserUpdate,
 }) => {
+  useEffect(() => {
+    setName(currentUser.name);
+    setAvatar(currentUser.avatar);
+  }, [isOpen, currentUser]);
+
   const [name, setName] = useState("");
   const [avatar, setAvatar] = useState("");
-
-  useEffect(() => {
-    if (isOpen) {
-      setName(currentUser.name);
-      setAvatar(currentUser.avatar);
-    }
-  }, [isOpen]);
 
   const handleNameChange = (e) => {
     setName(e.target.value);

@@ -33,8 +33,7 @@ export const authorize = (email, password) => {
         return data;
       }
       return;
-    })
-    .catch((err) => console.error(err));
+    });
 };
 
 export const getUser = (token) => {
