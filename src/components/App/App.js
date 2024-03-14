@@ -75,8 +75,9 @@ function App() {
 
   const handleAddItemSubmit = ({ name, imageUrl, weather }) => {
     debugger;
+
     api
-      .addItems({ name, imageUrl, weather })
+      .addItems({ name, imageUrl, weather, owner: currentUser?._id })
       .then((item) => {
         setClothingItems([item, ...clothingItems]);
         handleCloseModal();

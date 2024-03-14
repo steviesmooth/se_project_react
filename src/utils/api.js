@@ -16,7 +16,7 @@ export const getItems = () => {
   }).then(processServerResponse);
 };
 
-export const addItems = ({ name, imageUrl, weather }) => {
+export const addItems = ({ name, imageUrl, weather, owner }) => {
   debugger;
   return fetch(`${baseUrl}/items`, {
     method: "POST",
@@ -28,6 +28,7 @@ export const addItems = ({ name, imageUrl, weather }) => {
       name,
       imageUrl,
       weather,
+      owner,
     }),
   }).then(processServerResponse);
 };
