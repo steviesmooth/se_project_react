@@ -17,6 +17,7 @@ export const getItems = () => {
 };
 
 export const addItems = ({ name, imageUrl, weather }) => {
+  debugger;
   return fetch(`${baseUrl}/items`, {
     method: "POST",
     headers: {

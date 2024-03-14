@@ -74,6 +74,7 @@ function App() {
   };
 
   const handleAddItemSubmit = ({ name, imageUrl, weather }) => {
+    debugger;
     api
       .addItems({ name, imageUrl, weather })
       .then((item) => {
@@ -142,7 +143,7 @@ function App() {
       setIsLoggedIn(true);
       getUser(token)
         .then((res) => {
-          setCurrentUser(res.user);
+          setCurrentUser(res.data);
         })
         .catch((err) => {
           console.error(err);
@@ -170,9 +171,9 @@ function App() {
   };
   const handleRegister = ({ name, email, avatar, password }) => {
     return register({ name, email, avatar, password })
-      .then((res) => {
+      .then((currentUser) => {
         setIsLoggedIn(true);
-        setCurrentUser(res.user);
+        setCurrentUser(currentUser);
         handleCloseModal();
       })
       .catch((err) => console.error(err));
@@ -181,8 +182,8 @@ function App() {
   const handleUserUpdate = ({ name, avatar, token }) => {
     api
       .updateUser(name, avatar, token)
-      .then((res) => {
-        setCurrentUser(res.user);
+      .then((currentUser) => {
+        setCurrentUser(currentUser);
         handleCloseModal();
       })
       .catch((err) => {
