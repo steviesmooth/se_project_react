@@ -16,19 +16,19 @@ export const getItems = () => {
   }).then(processServerResponse);
 };
 
-export const addItems = ({ name, imageUrl, weather, owner }) => {
+export const addItems = ({ name, imageUrl, weather }) => {
+  const token = localStorage.getItem("jwt");
   debugger;
   return fetch(`${baseUrl}/items`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
-      authorization: `Bearer ${localStorage.getItem("token")}`,
+      authorization: `Bearer ${token}`,
     },
     body: JSON.stringify({
       name,
       imageUrl,
       weather,
-      owner,
     }),
   }).then(processServerResponse);
 };

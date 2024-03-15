@@ -77,7 +77,7 @@ function App() {
     debugger;
 
     api
-      .addItems({ name, imageUrl, weather, owner: currentUser?._id })
+      .addItems({ name, imageUrl, weather })
       .then((item) => {
         setClothingItems([item, ...clothingItems]);
         handleCloseModal();
