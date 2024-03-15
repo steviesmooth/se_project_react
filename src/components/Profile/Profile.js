@@ -10,6 +10,7 @@ const Profile = ({
   onEditModal,
   isLoggedIn,
   handleLogout,
+  onCardLike,
 }) => {
   const userClothes = clothingItems.filter(
     (items) => items?.owner === currentUser?._id
@@ -26,6 +27,7 @@ const Profile = ({
         onSelectCard={onSelectCard}
         clothingItems={userClothes}
         isLoggedIn={isLoggedIn}
+        onCardLike={onCardLike}
       />
     </div>
   );

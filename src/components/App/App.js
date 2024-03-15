@@ -77,7 +77,9 @@ function App() {
     api
       .addItems({ name, imageUrl, weather })
       .then((item) => {
-        setClothingItems([item.clothingItem, ...clothingItems]);
+        debugger;
+        console.log({ item });
+        setClothingItems([item.data, ...clothingItems]);
         handleCloseModal();
       })
       .catch((err) => {
@@ -85,17 +87,18 @@ function App() {
       });
   };
 
-  const handleCardLike = ({ id, isLiked }) => {
+  const handleCardLike = ({ id, isLiked, currentUser }) => {
     const token = localStorage.getItem("jwt");
+    debugger;
     // Check if this card is now liked
     isLiked
       ? // if so, send a request to add the user's id to the card's likes array
         api
           // the first argument is the card's id
-          .addCardLike(id, token)
-          .then((updatedCard) => {
+          .addCardLike(id, token, currentUser)
+          .then((data) => {
             setClothingItems((cards) =>
-              cards.map((c) => (c._id === id ? updatedCard : c))
+              cards.map((c) => (c._id === id ? data : c))
             );
           })
           .catch((err) => console.log(err))
@@ -103,9 +106,9 @@ function App() {
         api
           // the first argument is the card's id
           .removeCardLike(id, token)
-          .then((updatedCard) => {
+          .then((data) => {
             setClothingItems((cards) =>
-              cards.map((c) => (c._id === id ? updatedCard : c))
+              cards.map((c) => (c._id === id ? data : c))
             );
           })
           .catch((err) => console.log(err));
@@ -190,7 +193,8 @@ function App() {
     api
       .updateUser(name, avatar, token)
       .then((res) => {
-        setCurrentUser(res.data);
+        debugger;
+        setCurrentUser(res.user);
         handleCloseModal();
       })
       .catch((err) => {
@@ -227,6 +231,7 @@ function App() {
                 }}
                 isLoggedIn={isLoggedIn}
                 handleLogout={handleLogout}
+                onCardLike={handleCardLike}
               />
             </ProtectedRoute>
             <Route path={"/"}>
