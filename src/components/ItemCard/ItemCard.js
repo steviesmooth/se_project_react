@@ -15,9 +15,10 @@ const ItemCard = ({ item, onSelectCard, onCardLike, isLoggedIn }) => {
 
   const handeLike = () => {
     debugger;
-    console.log(item);
+
     const id = item._id;
-    onCardLike({ id, isLiked, currentUser });
+    onCardLike({ id: id, isLiked: isLiked, currentUser: currentUser });
+    console.log({ id, isLiked, currentUser });
   };
 
   return (
