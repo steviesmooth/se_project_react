@@ -12,7 +12,7 @@ const Profile = ({
   handleLogout,
 }) => {
   const userClothes = clothingItems.filter(
-    (item) => item.owner === currentUser?._id
+    (items) => items._id === currentUser?._id
   );
   return (
     <div className="profile">

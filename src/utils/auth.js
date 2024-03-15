@@ -28,8 +28,8 @@ export const authorize = (email, password) => {
   })
     .then(processServerResponse)
     .then((data) => {
-      if (data.user) {
-        localStorage.setItem("jwt", data.jwt);
+      if (data) {
+        localStorage.setItem("jwt", data.token);
         return data;
       }
       return;

@@ -74,12 +74,10 @@ function App() {
   };
 
   const handleAddItemSubmit = ({ name, imageUrl, weather }) => {
-    debugger;
-
     api
       .addItems({ name, imageUrl, weather })
       .then((item) => {
-        setClothingItems([item, ...clothingItems]);
+        setClothingItems([item.clothingItem, ...clothingItems]);
         handleCloseModal();
       })
       .catch((err) => {
@@ -128,16 +126,6 @@ function App() {
   }, []);
 
   useEffect(() => {
-    api
-      .getItems()
-      .then((items) => {
-        setClothingItems(items);
-        handleCloseModal();
-      })
-      .catch(console.error());
-  }, [isLoggedIn]);
-
-  useEffect(() => {
     getWeatherForcast()
       .then((data) => {
         const tempature = parseWeatherData(data);
@@ -154,6 +142,7 @@ function App() {
       setIsLoggedIn(true);
       getUser(token)
         .then((res) => {
+          console.log({ res });
           setCurrentUser(res.data);
         })
         .catch((err) => {
