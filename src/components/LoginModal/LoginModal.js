@@ -36,7 +36,6 @@ const LoginModal = ({
     if (isOpen) {
       setEmail("");
       setPassword("");
-      setError(false);
     }
   }, [isOpen]);
 
@@ -52,7 +51,7 @@ const LoginModal = ({
     >
       <label>
         <h4 className={error ? "form__name_error" : "form__name"}>
-          {error ? "Incorrect Email" : "Email"}
+          {error ? "Incorrect Email or Password" : "Email"}
         </h4>
         <input
           className={
@@ -68,7 +67,7 @@ const LoginModal = ({
       </label>
       <label>
         <h4 className={error ? "form__name_error" : "form__name"}>
-          {error ? "Incorrect Password" : "Password"}
+          {error ? "Incorrect Email or Password" : "Password"}
         </h4>
         <input
           className={
