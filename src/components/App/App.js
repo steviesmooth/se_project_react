@@ -27,11 +27,7 @@ function App() {
   const [clothingItems, setClothingItems] = useState([]);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [error, setError] = useState(false);
-  const [currentUser, setCurrentUser] = useState({
-    name: "",
-    avatar: "",
-    _id: "",
-  });
+  const [currentUser, setCurrentUser] = useState(null);
 
   const handleSelectedCard = (card) => {
     setSelectedCard(card);
@@ -139,27 +135,33 @@ function App() {
   useEffect(() => {
     if (localStorage.getItem("token")) {
       const token = localStorage.getItem("token");
-      setIsLoggedIn(true);
       getUser(token)
         .then((res) => {
           console.log({ res });
+          setIsLoggedIn(true);
           setCurrentUser(res.data);
         })
         .catch((err) => {
           console.error(err);
         });
     }
-  }, [isLoggedIn]);
+  }, []);
 
   const handleLogin = (email, password) => {
     setError(false);
     authorize(email, password)
-      .then(() => {
-        setIsLoggedIn(true);
-        handleCloseModal();
+      .then((res) => {
+        localStorage.setItem("jwt", res.token);
+        const token = localStorage.getItem("jwt");
+        getUser(token).then((res) => {
+          setCurrentUser(res.data);
+          setIsLoggedIn(true);
+          handleCloseModal();
+        });
       })
       .catch((err) => {
         console.error(err);
+
         setError(true);
       });
   };
@@ -171,9 +173,9 @@ function App() {
   };
   const handleRegister = ({ name, email, avatar, password }) => {
     return register({ name, email, avatar, password })
-      .then((currentUser) => {
+      .then((res) => {
         setIsLoggedIn(true);
-        setCurrentUser(currentUser);
+        setCurrentUser(res.data);
         handleCloseModal();
       })
       .catch((err) => console.error(err));
