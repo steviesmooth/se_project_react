@@ -137,8 +137,8 @@ function App() {
   }, []);
 
   useEffect(() => {
-    if (localStorage.getItem("token")) {
-      const token = localStorage.getItem("token");
+    if (localStorage.getItem("jwt")) {
+      const token = localStorage.getItem("jwt");
       getUser(token)
         .then((res) => {
           console.log({ res });
@@ -149,7 +149,7 @@ function App() {
           console.error(err);
         });
     }
-  }, []);
+  }, [isLoggedIn]);
 
   const handleLogin = (email, password) => {
     setError(false);
@@ -172,7 +172,7 @@ function App() {
 
   const handleLogout = (e) => {
     e.preventDefault();
-    localStorage.removeItem("token");
+    localStorage.removeItem("jwt");
     setIsLoggedIn(false);
   };
   const handleRegister = ({ name, email, avatar, password }) => {
@@ -185,11 +185,12 @@ function App() {
       .catch((err) => console.error(err));
   };
 
-  const handleUserUpdate = ({ name, avatar, token }) => {
+  const handleUserUpdate = (name, avatar) => {
+    const token = localStorage.getItem("jwt");
     api
       .updateUser(name, avatar, token)
-      .then((currentUser) => {
-        setCurrentUser(currentUser);
+      .then((res) => {
+        setCurrentUser(res.data);
         handleCloseModal();
       })
       .catch((err) => {
@@ -215,7 +216,7 @@ function App() {
             isLoggedIn={isLoggedIn}
           />
           <Switch>
-            <ProtectedRoute isLoggedIn={isLoggedIn} path="/profile">
+            <ProtectedRoute path="/profile" isLoggedIn={isLoggedIn}>
               <Profile
                 currentUser={currentUser}
                 clothingItems={clothingItems}
@@ -273,7 +274,6 @@ function App() {
             name={"update"}
             onClose={handleCloseModal}
             handleUserUpdate={handleUserUpdate}
-            currentUser={currentUser}
           />
         </CurrentTemperatureUnitContext.Provider>
       </div>

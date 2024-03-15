@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import ModalWithForm from "../ModalWithForm/ModalWithForm";
 
 const EditProfileModal = ({
@@ -7,11 +7,6 @@ const EditProfileModal = ({
   currentUser,
   handleUserUpdate,
 }) => {
-  useEffect(() => {
-    setName(currentUser?.name);
-    setAvatar(currentUser?.avatar);
-  }, [isOpen, currentUser]);
-
   const [name, setName] = useState("");
   const [avatar, setAvatar] = useState("");
 
@@ -25,10 +20,7 @@ const EditProfileModal = ({
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    handleUserUpdate({
-      name,
-      avatar,
-    });
+    handleUserUpdate(name, avatar);
   };
 
   return (

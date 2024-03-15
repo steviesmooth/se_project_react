@@ -34,18 +34,19 @@ export const addItems = ({ name, imageUrl, weather }) => {
 };
 
 export const deleteItems = (_id) => {
+  const token = localStorage.getItem("jwt");
   return fetch(`${baseUrl}/items/${_id}`, {
     method: "DELETE",
     headers: {
       "Content-Type": "application/json",
-      authorization: `Bearer ${localStorage.getItem("token")}`,
+      authorization: `Bearer ${token}`,
     },
   }).then(processServerResponse);
 };
 
 export const updateUser = (name, avatar, token) => {
   return fetch(`${baseUrl}/users/me`, {
-    method: "POST",
+    method: "PATCH",
     headers: {
       "Content-Type": "application/json",
       authorization: `Bearer ${token}`,
