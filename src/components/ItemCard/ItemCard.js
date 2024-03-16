@@ -1,12 +1,11 @@
-import { useContext } from "react";
+import React from "react";
 import "./ItemCard.css";
 import CurrentUserContext from "../../contexts/CurrentUserContext";
 import likeBtn from "../../Like button.svg";
 import isLikedBtn from "../../isLiked.svg";
 
 const ItemCard = ({ item, onSelectCard, onCardLike, isLoggedIn }) => {
-  const currentUser = useContext(CurrentUserContext);
-
+  const { currentUser } = React.useContext(CurrentUserContext);
   const isLiked = item.likes.some((user) => user === currentUser._id);
 
   const itemLikeButtonClassName = isLoggedIn
@@ -17,8 +16,8 @@ const ItemCard = ({ item, onSelectCard, onCardLike, isLoggedIn }) => {
     debugger;
 
     const id = item._id;
-    onCardLike({ id: id, isLiked: isLiked, currentUser: currentUser });
     console.log({ id, isLiked, currentUser });
+    onCardLike({ id: id, isLiked: isLiked, currentUser: currentUser });
   };
 
   return (
