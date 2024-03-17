@@ -10,11 +10,19 @@
   display: flex;
   align-items: center;
   gap: 20px;
+  color: black;
+  font-size: 20px;
+  line-height: 23px;
+}
+.header__user-name:hover {
+  cursor: pointer;
+  opacity: 0.5;
 }
 a {
   display: flex;
   gap: 20px;
   align-items: center;
+  text-decoration: none;
 }
 .header__user-img {
   height: 40px;

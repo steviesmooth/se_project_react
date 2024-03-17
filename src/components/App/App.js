@@ -101,15 +101,16 @@ function App() {
           console.log({ updatedCard });
         })
         .catch((err) => console.log(err));
+    } else {
+      api
+        .removeCardLike(id, token)
+        .then((updatedCard) => {
+          setClothingItems((cards) =>
+            cards.map((c) => (c._id === id ? updatedCard.data : c))
+          );
+        })
+        .catch((err) => console.log(err));
     }
-    api
-      .removeCardLike(id, token)
-      .then((updatedCard) => {
-        setClothingItems((cards) =>
-          cards.map((c) => (c._id === id ? updatedCard.data : c))
-        );
-      })
-      .catch((err) => console.log(err));
   };
 
   const getClothingItems = () => {
@@ -219,7 +220,7 @@ function App() {
             isLoggedIn={isLoggedIn}
           />
           <Switch>
-            <ProtectedRoute path="/profile" isLoggedIn={isLoggedIn}>
+            <ProtectedRoute isLoggedIn={isLoggedIn} path="/profile">
               <Profile
                 currentUser={currentUser}
                 clothingItems={clothingItems}
