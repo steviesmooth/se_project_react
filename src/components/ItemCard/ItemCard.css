@@ -36,23 +36,23 @@
   cursor: pointer;
 }
 .card__like-btn {
-  background-image: url(../../Like\ button.svg);
+  background-image: url(../../Like\ button.png);
   background-color: transparent;
   background-repeat: no-repeat;
   border: none;
-  width: 18px;
-  height: 15px;
+  width: 20px;
+  height: 18px;
   margin-left: 10px;
   z-index: 2;
 }
 
 .card__like-btn_liked {
-  background-image: url(../../isLiked.svg);
+  background-image: url(../../isLiked.png);
   background-color: transparent;
   background-repeat: no-repeat;
   border: none;
-  width: 18px;
-  height: 15px;
+  width: 20px;
+  height: 18px;
   margin-left: 10px;
   z-index: 2;
 }

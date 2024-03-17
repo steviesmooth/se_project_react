@@ -38,7 +38,7 @@ const EditProfileModal = ({
       onSubmit={handleSubmit}
     >
       <label>
-        <h4 className="form__name">Name*</h4>
+        <h4 className="form__name">Name</h4>
         <input
           className="form__input form__input_type_name"
           placeholder="Name"

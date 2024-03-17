@@ -1,12 +1,13 @@
-import React from "react";
+import React, { useState } from "react";
 import "./ItemCard.css";
 import CurrentUserContext from "../../contexts/CurrentUserContext";
-import likeBtn from "../../Like button.svg";
-import isLikedBtn from "../../isLiked.svg";
 
 const ItemCard = ({ item, onSelectCard, onCardLike, isLoggedIn }) => {
   const { currentUser } = React.useContext(CurrentUserContext);
-  const isLiked = item.likes.some((user) => user === currentUser._id);
+  const id = item._id;
+  const [isLiked, setIsLiked] = useState(
+    item.likes.some((user) => user === currentUser?._id)
+  );
 
   const itemLikeButtonClassName = isLoggedIn
     ? `${isLiked ? "card__like-btn_liked" : "card__like-btn"}`
@@ -14,10 +15,8 @@ const ItemCard = ({ item, onSelectCard, onCardLike, isLoggedIn }) => {
 
   const handeLike = () => {
     debugger;
-
-    const id = item._id;
-    console.log({ id, isLiked, currentUser });
-    onCardLike({ id: id, isLiked: isLiked, currentUser: currentUser });
+    onCardLike(id, isLiked);
+    setIsLiked(!isLiked);
   };
 
   return (
@@ -26,7 +25,6 @@ const ItemCard = ({ item, onSelectCard, onCardLike, isLoggedIn }) => {
         <h5 className="card__name">{item.name}</h5>
         <button
           className={itemLikeButtonClassName}
-          src={isLiked ? isLikedBtn : likeBtn}
           onClick={handeLike}
         ></button>
       </div>

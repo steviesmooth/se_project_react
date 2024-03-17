@@ -87,31 +87,29 @@ function App() {
       });
   };
 
-  const handleCardLike = ({ id, isLiked, currentUser }) => {
+  const handleCardLike = (id, isLiked) => {
     const token = localStorage.getItem("jwt");
-    debugger;
-    // Check if this card is now liked
-    isLiked
-      ? // if so, send a request to add the user's id to the card's likes array
-        api
-          // the first argument is the card's id
-          .addCardLike(id, token, currentUser)
-          .then((data) => {
-            setClothingItems((cards) =>
-              cards.map((c) => (c._id === id ? data : c))
-            );
-          })
-          .catch((err) => console.log(err))
-      : // if not, send a request to remove the user's id from the card's likes array
-        api
-          // the first argument is the card's id
-          .removeCardLike(id, token)
-          .then((data) => {
-            setClothingItems((cards) =>
-              cards.map((c) => (c._id === id ? data : c))
-            );
-          })
-          .catch((err) => console.log(err));
+
+    if (!isLiked) {
+      api
+
+        .addCardLike(id, token)
+        .then((updatedCard) => {
+          setClothingItems((cards) =>
+            cards.map((c) => (c._id === id ? updatedCard.data : c))
+          );
+          console.log({ updatedCard });
+        })
+        .catch((err) => console.log(err));
+    }
+    api
+      .removeCardLike(id, token)
+      .then((updatedCard) => {
+        setClothingItems((cards) =>
+          cards.map((c) => (c._id === id ? updatedCard.data : c))
+        );
+      })
+      .catch((err) => console.log(err));
   };
 
   const getClothingItems = () => {
@@ -126,7 +124,7 @@ function App() {
   };
   useEffect(() => {
     getClothingItems();
-  }, []);
+  }, [isLoggedIn]);
 
   useEffect(() => {
     getWeatherForcast()

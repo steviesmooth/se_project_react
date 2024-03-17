@@ -27,7 +27,6 @@ function Main({
   };
   const weatherType = getWeatherType();
   const filteredCards = clothingItems.filter((card) => {
-    debugger;
     return card?.weather.toLowerCase() === weatherType;
   });
 
