@@ -116,6 +116,7 @@ function App() {
     api
       .getItems()
       .then((data) => {
+        debugger;
         setClothingItems(data);
       })
       .catch((err) => {
