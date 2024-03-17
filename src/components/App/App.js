@@ -125,7 +125,7 @@ function App() {
   };
   useEffect(() => {
     getClothingItems();
-  }, [isLoggedIn]);
+  }, []);
 
   useEffect(() => {
     getWeatherForcast()

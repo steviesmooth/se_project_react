@@ -3,7 +3,7 @@ import "./ItemCard.css";
 import CurrentUserContext from "../../contexts/CurrentUserContext";
 
 const ItemCard = ({ item, onSelectCard, onCardLike, isLoggedIn }) => {
-  const { currentUser } = React.useContext(CurrentUserContext);
+  const currentUser = React.useContext(CurrentUserContext);
   const id = item._id;
   const [isLiked, setIsLiked] = useState(
     item.likes.some((user) => user === currentUser?._id)
