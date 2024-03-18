@@ -186,7 +186,6 @@ function App() {
       .then((res) => {
         setIsLoggedIn(true);
         setCurrentUser(res);
-        localStorage.setItem("jwt", res.token);
         handleCloseModal();
         history.push("/profile");
       })
