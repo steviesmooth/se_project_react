@@ -7,13 +7,13 @@ const EditProfileModal = ({
   currentUser,
   handleUserUpdate,
 }) => {
-  const [name, setName] = useState("");
-  const [avatar, setAvatar] = useState("");
-
   useEffect(() => {
     setName(currentUser?.name);
     setAvatar(currentUser?.avatar);
-  }, [currentUser]);
+  }, [currentUser, isOpen]);
+
+  const [name, setName] = useState("");
+  const [avatar, setAvatar] = useState("");
 
   const handleNameChange = (e) => {
     setName(e.target.value);
@@ -45,8 +45,8 @@ const EditProfileModal = ({
           type="text"
           minLength="1"
           maxLength="40"
-          onChange={(e) => handleNameChange(e.target.value)}
-          value={name}
+          onChange={handleNameChange}
+          value={name || ""}
           required
         ></input>
       </label>
@@ -54,11 +54,11 @@ const EditProfileModal = ({
         <h4 className="form__name">Avatar</h4>
         <input
           className="form__input form__input_type_image"
-          onChange={(e) => handleAvatarChange(e.target.value)}
+          onChange={handleAvatarChange}
           placeholder="Avatar URL"
           type="url"
           name="avatar"
-          value={avatar}
+          value={avatar || ""}
           required
         ></input>
       </label>
