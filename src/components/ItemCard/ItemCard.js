@@ -14,9 +14,7 @@ const ItemCard = ({ item, onSelectCard, onCardLike, isLoggedIn }) => {
     : "card__like-btn_hidden";
 
   const handeLike = () => {
-    debugger;
-    onCardLike(id, isLiked);
-    setIsLiked(!isLiked);
+    onCardLike(id, isLiked, setIsLiked);
   };
 
   return (

@@ -1,9 +1,9 @@
-import { useContext, useEffect, useState } from "react";
+import { useContext } from "react";
 import "./ToggleSwitch.css";
 import CurrentTemperatureUnitContext from "../../contexts/CurrentTemperatureUnitContext";
 
 const ToggleSwitch = () => {
-  const { currentTemperatureUnit, handleToggleSwitch } = useContext(
+  const { currentTemperatureUnit, handleToggleSwitchChange } = useContext(
     CurrentTemperatureUnitContext
   );
 
@@ -26,7 +26,7 @@ const ToggleSwitch = () => {
           id="switch"
           value={currentTemperatureUnit}
           checked={isChecked}
-          onChange={handleToggleSwitch}
+          onChange={handleToggleSwitchChange}
         />
         <span className={`switch__button`}></span>
       </label>

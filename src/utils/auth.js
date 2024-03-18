@@ -1,15 +1,10 @@
+import { processServerResponse } from "./api";
+
 const baseUrl = "http://localhost:3001";
 
 const headers = {
   Accept: "application/json",
   "Content-Type": "application/json",
-};
-
-export const processServerResponse = (res) => {
-  if (res.ok) {
-    return res.json();
-  }
-  return Promise.reject(`Error: ${res.status}`);
 };
 
 export const register = ({ name, avatar, email, password }) => {

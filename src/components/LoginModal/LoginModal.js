@@ -1,6 +1,6 @@
 import React, { useEffect, useMemo, useState } from "react";
 import ModalWithForm from "../ModalWithForm/ModalWithForm";
-import { useHistory, withRouter } from "react-router-dom/cjs/react-router-dom";
+import { withRouter } from "react-router-dom/cjs/react-router-dom";
 import { regex } from "../../utils/constants";
 
 const LoginModal = ({
@@ -13,7 +13,6 @@ const LoginModal = ({
 }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const history = useHistory();
 
   const isValid = useMemo(() => {
     return password.length >= 6 && email.match(regex);
@@ -30,7 +29,6 @@ const LoginModal = ({
   const handleSubmit = (e) => {
     e.preventDefault();
     handleLogin(email, password);
-    history.push("/profile");
   };
   useEffect(() => {
     if (isOpen) {

@@ -7,7 +7,11 @@ import ItemModal from "../ItemModal/ItemModal";
 import { getWeatherForcast, parseWeatherData } from "../../utils/WeatherApi";
 import { useEffect, useState } from "react";
 import CurrentTemperatureUnitContext from "../../contexts/CurrentTemperatureUnitContext";
-import { Route, Switch } from "react-router-dom/cjs/react-router-dom.min";
+import {
+  Route,
+  Switch,
+  useHistory,
+} from "react-router-dom/cjs/react-router-dom.min";
 import * as api from "../../utils/api";
 import Profile from "../Profile/Profile";
 import CurrentUserContext from "../../contexts/CurrentUserContext";
@@ -32,6 +36,7 @@ function App() {
     avatar: "",
     _id: "",
   });
+  const history = useHistory();
 
   const handleSelectedCard = (card) => {
     setSelectedCard(card);
@@ -77,8 +82,6 @@ function App() {
     api
       .addItems({ name, imageUrl, weather })
       .then((item) => {
-        debugger;
-        console.log({ item });
         setClothingItems([item.data, ...clothingItems]);
         handleCloseModal();
       })
@@ -87,7 +90,7 @@ function App() {
       });
   };
 
-  const handleCardLike = (id, isLiked) => {
+  const handleCardLike = (id, isLiked, setIsLiked) => {
     const token = localStorage.getItem("jwt");
 
     if (!isLiked) {
@@ -95,6 +98,7 @@ function App() {
 
         .addCardLike(id, token)
         .then((updatedCard) => {
+          setIsLiked(true);
           setClothingItems((cards) =>
             cards.map((c) => (c._id === id ? updatedCard.data : c))
           );
@@ -105,6 +109,7 @@ function App() {
       api
         .removeCardLike(id, token)
         .then((updatedCard) => {
+          setIsLiked(false);
           setClothingItems((cards) =>
             cards.map((c) => (c._id === id ? updatedCard.data : c))
           );
@@ -117,7 +122,6 @@ function App() {
     api
       .getItems()
       .then((data) => {
-        debugger;
         setClothingItems(data);
       })
       .catch((err) => {
@@ -144,7 +148,6 @@ function App() {
       const token = localStorage.getItem("jwt");
       getUser(token)
         .then((res) => {
-          console.log({ res });
           setIsLoggedIn(true);
           setCurrentUser(res.data);
         })
@@ -164,6 +167,7 @@ function App() {
           setCurrentUser(res.data);
           setIsLoggedIn(true);
           handleCloseModal();
+          history.push("/profile");
         });
       })
       .catch((err) => {
@@ -182,8 +186,9 @@ function App() {
     return register({ name, email, avatar, password })
       .then((res) => {
         setIsLoggedIn(true);
-        setCurrentUser(res.data);
+        setCurrentUser(res);
         handleCloseModal();
+        history.push("/profile");
       })
       .catch((err) => console.error(err));
   };
@@ -193,7 +198,6 @@ function App() {
     api
       .updateUser(name, avatar, token)
       .then((res) => {
-        debugger;
         setCurrentUser(res.user);
         handleCloseModal();
       })

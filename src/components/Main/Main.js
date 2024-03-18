@@ -17,12 +17,22 @@ function Main({
   const currentTemp = weatherTemp?.temp?.[currentTemperatureUnit];
 
   const getWeatherType = () => {
-    if (currentTemp >= 86) {
-      return "hot";
-    } else if (currentTemp >= 66 && currentTemp <= 85) {
-      return "warm";
-    } else if (currentTemp <= 65) {
-      return "cold";
+    if (currentTemperatureUnit === "F") {
+      if (currentTemp >= 86) {
+        return "hot";
+      } else if (currentTemp >= 66 && currentTemp <= 85) {
+        return "warm";
+      } else if (currentTemp <= 65) {
+        return "cold";
+      }
+    } else if (currentTemperatureUnit === "C") {
+      if (currentTemp >= 30) {
+        return "hot";
+      } else if (currentTemp >= 10 && currentTemp <= 29) {
+        return "warm";
+      } else if (currentTemp <= 10) {
+        return "cold";
+      }
     }
   };
   const weatherType = getWeatherType();

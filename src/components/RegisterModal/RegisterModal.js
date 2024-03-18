@@ -1,8 +1,6 @@
 import React, { useEffect, useMemo, useState } from "react";
 import ModalWithForm from "../ModalWithForm/ModalWithForm";
-import { useHistory } from "react-router-dom/cjs/react-router-dom";
 import { regex } from "../../utils/constants";
-import { register } from "../../utils/auth";
 
 const RegisterModal = ({
   isOpen,
@@ -14,7 +12,6 @@ const RegisterModal = ({
   const [password, setPassword] = useState("");
   const [name, setName] = useState("");
   const [avatar, setAvatar] = useState("");
-  const history = useHistory();
 
   useEffect(() => {
     if (isOpen) {
@@ -48,7 +45,6 @@ const RegisterModal = ({
   const handleSubmit = (e) => {
     e.preventDefault();
     handleRegister({ email, password, name, avatar });
-    history.push("/profile");
   };
 
   return (
