@@ -46,7 +46,7 @@ function App() {
     setActiveModal("");
   };
 
-  const handleToggleSwitch = () => {
+  const handleToggleSwitchChange = () => {
     setCurrentTemperatureUnit(currentTemperatureUnit === "F" ? "C" : "F");
   };
 
@@ -206,7 +206,7 @@ function App() {
     <CurrentUserContext.Provider value={currentUser}>
       <div className="app">
         <CurrentTemperatureUnitContext.Provider
-          value={{ currentTemperatureUnit, handleToggleSwitch }}
+          value={{ currentTemperatureUnit, handleToggleSwitchChange }}
         >
           <Header
             onCreateModal={handleOpenModal}

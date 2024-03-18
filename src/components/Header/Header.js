@@ -21,7 +21,7 @@ const Header = ({
     <header className="header">
       <div className="header__logo">
         <div>
-          <Link to={"/"}>
+          <Link to="/">
             <img src="../Logo.svg" alt="logo" />
           </Link>
         </div>
@@ -51,7 +51,7 @@ const Header = ({
           </button>
         )}
         {isLoggedIn ? (
-          <Link to={"/profile"}>
+          <Link to="/profile">
             <h2 className="header__user-name">{currentUser?.name}</h2>
             {currentUser?.avatar === "" ? (
               <div className="header__user-img-text">
