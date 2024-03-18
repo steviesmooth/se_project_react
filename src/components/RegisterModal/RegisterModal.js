@@ -64,7 +64,7 @@ const RegisterModal = ({
           placeholder="Email"
           type="email"
           name="email"
-          onChange={(e) => handleEmail(e.target.value)}
+          onChange={handleEmail}
           value={email}
           required
         ></input>
@@ -76,7 +76,7 @@ const RegisterModal = ({
           placeholder="Password"
           type="text"
           name="password"
-          onChange={(e) => handlePassword(e.target.value)}
+          onChange={handlePassword}
           value={password}
           required
         ></input>
@@ -89,7 +89,7 @@ const RegisterModal = ({
           type="text"
           minLength="1"
           maxLength="40"
-          onChange={(e) => handleName(e.target.value)}
+          onChange={handleName}
           value={name}
           required
         ></input>
@@ -98,7 +98,7 @@ const RegisterModal = ({
         <h4 className="form__name">Avatar URL</h4>
         <input
           className="form__input form__input_type_image"
-          onChange={(e) => handleAvatar(e.target.value)}
+          onChange={handleAvatar}
           placeholder="Avatar URL"
           type="url"
           name="avatar"

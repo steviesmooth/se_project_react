@@ -143,12 +143,12 @@ function App() {
   }, []);
 
   useEffect(() => {
-    if (localStorage.getItem("jwt")) {
-      const token = localStorage.getItem("jwt");
+    const token = localStorage.getItem("jwt");
+    if (token) {
       getUser(token)
         .then((res) => {
-          setIsLoggedIn(true);
           setCurrentUser(res.data);
+          setIsLoggedIn(true);
         })
         .catch((err) => {
           console.error(err);
@@ -182,10 +182,11 @@ function App() {
     setIsLoggedIn(false);
   };
   const handleRegister = ({ name, email, avatar, password }) => {
-    return register({ name, email, avatar, password })
+    register({ name, email, avatar, password })
       .then((res) => {
         setIsLoggedIn(true);
         setCurrentUser(res);
+        localStorage.setItem("jwt", res.token);
         handleCloseModal();
         history.push("/profile");
       })
