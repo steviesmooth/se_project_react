@@ -102,7 +102,6 @@ function App() {
           setClothingItems((cards) =>
             cards.map((c) => (c._id === id ? updatedCard.data : c))
           );
-          console.log({ updatedCard });
         })
         .catch((err) => console.log(err));
     } else {

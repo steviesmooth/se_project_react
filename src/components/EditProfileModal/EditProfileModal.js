@@ -45,7 +45,7 @@ const EditProfileModal = ({
           type="text"
           minLength="1"
           maxLength="40"
-          onChange={handleNameChange}
+          onChange={(e) => handleNameChange(e.target.value)}
           value={name}
           required
         ></input>
@@ -54,7 +54,7 @@ const EditProfileModal = ({
         <h4 className="form__name">Avatar</h4>
         <input
           className="form__input form__input_type_image"
-          onChange={handleAvatarChange}
+          onChange={(e) => handleAvatarChange(e.target.value)}
           placeholder="Avatar URL"
           type="url"
           name="avatar"
