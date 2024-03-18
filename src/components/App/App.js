@@ -282,6 +282,7 @@ function App() {
             name={"update"}
             onClose={handleCloseModal}
             handleUserUpdate={handleUserUpdate}
+            currentUser={currentUser}
           />
         </CurrentTemperatureUnitContext.Provider>
       </div>
