@@ -28,9 +28,9 @@ function Main({
     } else if (currentTemperatureUnit === "C") {
       if (currentTemp >= 30) {
         return "hot";
-      } else if (currentTemp >= 11 && currentTemp <= 29) {
+      } else if (currentTemp >= 19 && currentTemp <= 29) {
         return "warm";
-      } else if (currentTemp <= 10) {
+      } else if (currentTemp <= 18) {
         return "cold";
       }
     }
