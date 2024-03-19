@@ -79,6 +79,7 @@ function App() {
   };
 
   const handleAddItemSubmit = ({ name, imageUrl, weather }) => {
+    debugger;
     api
       .addItems({ name, imageUrl, weather })
       .then((item) => {
@@ -186,6 +187,7 @@ function App() {
       .then((res) => {
         setIsLoggedIn(true);
         setCurrentUser(res);
+        handleLogin(email, password);
         handleCloseModal();
         history.push("/profile");
       })
