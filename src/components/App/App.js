@@ -226,7 +226,6 @@ function App() {
           <Switch>
             <ProtectedRoute isLoggedIn={isLoggedIn} path="/profile">
               <Profile
-                currentUser={currentUser}
                 clothingItems={clothingItems}
                 onSelectCard={handleSelectedCard}
                 onCreateModal={handleOpenModal}
@@ -283,7 +282,6 @@ function App() {
             name={"update"}
             onClose={handleCloseModal}
             handleUserUpdate={handleUserUpdate}
-            currentUser={currentUser}
           />
         </CurrentTemperatureUnitContext.Provider>
       </div>

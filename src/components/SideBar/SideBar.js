@@ -1,6 +1,9 @@
+import { useContext } from "react";
 import "./SideBar.css";
+import CurrentUserContext from "../../contexts/CurrentUserContext";
 
-const SideBar = ({ currentUser, onEditModal, handleLogout }) => {
+const SideBar = ({ onEditModal, handleLogout }) => {
+  const currentUser = useContext(CurrentUserContext);
   return (
     <div className="sidebar">
       <div className="sidebar__user">

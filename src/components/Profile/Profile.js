@@ -1,27 +1,25 @@
 import "./Profile.css";
 import SideBar from "../SideBar/SideBar";
 import ClothesSection from "../ClothesSection/ClothesSection";
+import { useContext } from "react";
+import CurrentUserContext from "../../contexts/CurrentUserContext";
 
 const Profile = ({
   clothingItems,
   onCreateModal,
   onSelectCard,
-  currentUser,
   onEditModal,
   isLoggedIn,
   handleLogout,
   onCardLike,
 }) => {
+  const currentUser = useContext(CurrentUserContext);
   const userClothes = clothingItems.filter(
     (items) => items?.owner === currentUser?._id
   );
   return (
     <div className="profile">
-      <SideBar
-        currentUser={currentUser}
-        handleLogout={handleLogout}
-        onEditModal={onEditModal}
-      />
+      <SideBar handleLogout={handleLogout} onEditModal={onEditModal} />
       <ClothesSection
         onCreateModal={onCreateModal}
         onSelectCard={onSelectCard}
