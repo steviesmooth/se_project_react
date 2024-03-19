@@ -79,7 +79,6 @@ function App() {
   };
 
   const handleAddItemSubmit = ({ name, imageUrl, weather }) => {
-    debugger;
     api
       .addItems({ name, imageUrl, weather })
       .then((item) => {
