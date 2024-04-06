@@ -2,7 +2,7 @@ import { processServerResponse } from "./api";
 
 const baseUrl =
   process.env.NODE_ENV === "production"
-    ? "put the URL for your deployed backend here, including https://"
+    ? "https://api.stevennarak.strangled.net"
     : "http://localhost:3001";
 
 const headers = {
