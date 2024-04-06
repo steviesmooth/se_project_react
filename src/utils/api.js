@@ -1,4 +1,14 @@
-const baseUrl = "http://localhost:3001";
+const baseUrl =
+  process.env.NODE_ENV === "production"
+    ? "https://api.stevennarak.strangled.net"
+    : "https://localhost:3001";
+
+const allowedOrigins = [
+  "https://stevennarak.strangled.net",
+  "http://stevennarak.strangled.net",
+  "https://www.stevennarak.strangled.net",
+  "http://www.stevennarak.strangled.net",
+];
 
 export const processServerResponse = (res) => {
   if (res.ok) {
@@ -12,6 +22,7 @@ export const getItems = () => {
     method: "GET",
     headers: {
       "Content-Type": "application/json",
+      "Access-Control-Allow-Orgin": allowedOrigins,
     },
   }).then(processServerResponse);
 };
@@ -23,6 +34,7 @@ export const addItems = ({ name, imageUrl, weather }) => {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
+      "Access-Control-Allow-Orgin": allowedOrigins,
       authorization: `Bearer ${token}`,
     },
     body: JSON.stringify({
@@ -39,6 +51,7 @@ export const deleteItems = (_id) => {
     method: "DELETE",
     headers: {
       "Content-Type": "application/json",
+      "Access-Control-Allow-Orgin": allowedOrigins,
       authorization: `Bearer ${token}`,
     },
   }).then(processServerResponse);
